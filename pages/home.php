@@ -19,10 +19,13 @@ $user = $_SESSION['user'];
         <?php
         $stmt = $pdo->query("SELECT * FROM products");
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $imageSrc = (preg_match("/^https?:\/\//", $row["image"])) ? $row["image"] : "../assets/{$row["image"]}";
+            
             echo "<div style='border: 1px solid #ccc; border-radius: 8px; padding: 15px; width: 180px; background-color: white; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);'>
-                <img src='../assets/{$row['image']}' height='100' style='margin-bottom: 10px;'><br>
+                <img src='{$imageSrc}' height='100' style='margin-bottom: 10px; object-fit: contain; max-width: 100%;'><br>
                 <strong>{$row['name']}</strong><br>
                 ₹{$row['price']}<br><br>";
+            
             if ($row['stock'] > 0) {
                 echo "<button onclick=\"location.href='cart.php?add={$row['id']}'\" style='padding: 5px 10px; border: none; background-color: #28a745; color: white; border-radius: 4px; cursor: pointer;'>➕</button>";
             } else {
