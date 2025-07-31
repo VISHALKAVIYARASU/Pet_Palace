@@ -16,11 +16,3 @@
 --   image VARCHAR(255)
 -- );
 
--- -- Insert sample admin
--- INSERT INTO users (username, password, role)
--- VALUES ('admin', 'admin', 'admin'); -- Replace with hashed password
-
--- -- Insert sample products
--- INSERT INTO products (name, price, stock, image) VALUES
--- ('Dog Toy', 299.99, 10, 'toy.jpg'),
--- ('Cat Food', 499.00, 0, 'food.jpg');
