@@ -16,7 +16,8 @@ base_url = "http://localhost/PetPalace/auth/login.php"
 # List of login credentials to test
 test_users = [
     {"username": "admin", "password": "admin1@"},
-    {"username": "user", "password": "user1@"}
+    {"username": "user", "password": "user1@"},
+    {"username": "user1", "password": "guest1@"},
 ]
 
 for user in test_users:
