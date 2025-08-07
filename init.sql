@@ -16,6 +16,28 @@
 --   image VARCHAR(255)
 -- );
 
+
+-- CREATE TABLE user_cart (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT NOT NULL,
+--     product_id INT NOT NULL,
+--     quantity INT DEFAULT 1,
+--     UNIQUE KEY (user_id, product_id),
+--     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+--     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+-- );
+
+
+-- CREATE TABLE transactions (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT,
+--     amount DECIMAL(10, 2),
+--     payment_status VARCHAR(50),
+--     payment_method VARCHAR(50),
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+-- );
+
+
 -- -- Insert sample admin
 -- INSERT INTO users (username, password, role)
 -- VALUES ('admin', 'admin', 'admin'); -- Replace with hashed password

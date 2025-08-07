@@ -1,40 +1,45 @@
 # 🐾 Pet Palace – E-commerce Website for Pet Products
 
-Pet Palace is a PHP-based e-commerce application designed for selling pet-related products. It includes core features such as user registration/login, product browsing, add-to-cart, quantity control, mock payment gateway, admin-side CRUD operations, and more. The project also includes automation test cases using Selenium for quality assurance.
+Pet Palace is a PHP-based e-commerce application for selling pet-related products. It features user-friendly shopping, dynamic cart management, admin product controls, Stripe integration for payments, and Selenium-based login automation testing.
 
 ---
 
-## 📁 Features
+## 📦 Implemented Features
 
 ### 👤 User Features
-- User registration and login with password validation
-- Product listing with image, name, description, and price
-- Add to cart, update quantities, remove items
-- Checkout with a mock payment gateway
+- User **registration** and **login** with validation
+- Product listing with image, name, and price
+- Add products to cart and update quantities
+- **Real-time cart quantity control**
+- **Stock reduction** after payment
+- **Stripe payment gateway** integration
+- Invoice redirection post-payment
 
 ### 🛠️ Admin Features
-- Login-based admin panel
-- Add, update, and delete products
-- View user orders (mock)
+- Admin login panel
+- Add, edit, update, and delete products
+- View orders via invoice table (mock)
 
-### ✅ Validation Features
-- Email format check during registration
-- Password validation: minimum length, special character, number
+### 🔐 Validation Features
+- Email format validation
+- Password rule enforcement (length, symbols, numbers)
 
-### 🧪 Automation Testing (Selenium)
-- Login functionality test
-- Registration form test
-- Cart functionality test (coming soon)
-- Admin login test (coming soon)
+### 💳 Payment Integration
+- Stripe Checkout session via JavaScript
+- Secure API key via `.env` configuration
+
+### 🧪 Automation Testing
+- Selenium login test script (`test_login.py`)
 
 ---
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: PHP
+- **Frontend**: HTML5, CSS3, Bootstrap 5, JavaScript
+- **Backend**: PHP 8+
 - **Database**: MySQL
-- **Testing**: Python, Selenium WebDriver
+- **Payment**: Stripe API
+- **Testing**: Python 3, Selenium WebDriver
 - **Environment**: XAMPP (Apache + MySQL)
 
 ---
@@ -42,104 +47,98 @@ Pet Palace is a PHP-based e-commerce application designed for selling pet-relate
 ## ⚙️ Setup Instructions
 
 ### 🔧 Prerequisites
-- XAMPP installed
-- Python 3.11+ installed
-- Google Chrome browser
-- ChromeDriver (version matching your Chrome) in PATH
-- Selenium installed via pip:
+- Install [XAMPP](https://www.apachefriends.org/index.html)
+- Install Python 3.11+
+- Install Google Chrome
+- Add [ChromeDriver](https://chromedriver.chromium.org/) to system PATH (must match your Chrome version)
+- Install Selenium and WebDriver:
   ```bash
-  pip install selenium
+  pip install selenium webdriver-manager
   ```
 
 ---
 
 ## 🚀 How to Run the Project
 
-### 1️⃣ Launch PHP and MySQL
-1. Open **XAMPP Control Panel**
-2. Start **Apache** and **MySQL**
+### 1️⃣ Launch XAMPP
+- Start **Apache** and **MySQL** from the XAMPP Control Panel
 
-### 2️⃣ Set Up the Database
-1. Open [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
-2. Create a new database named:
-   ```
-   pet_palace
-   ```
-3. Import the `init.sql` file provided with the project into phpMyAdmin
-
-### 3️⃣ Place Project in `htdocs`
-1. Move the entire project folder `PetPalace` into:
-   ```
-   C:\xampp\htdocs\
-   ```
-
-### 4️⃣ Run the Application
-- Open browser and go to:
+### 2️⃣ Create MySQL Database
+- Go to [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
+- Create a new database named:
   ```
-  http://localhost/PetPalace
+  pet_palace
+  ```
+- Import the SQL structure from `init.sql` into this database
+
+### 3️⃣ Setup Environment File
+- Create a `.env` file in your root `PetPalace/` folder:
+  ```
+  STRIPE_SECRET_KEY=your_stripe_secret_key_here
+  STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key_here
+  ```
+- Replace `your_stripe_secret_key_here` with your actual test/live Stripe secret key
+
+### 4️⃣ Move Project to `htdocs`
+- Copy or move your project folder into:
+  ```
+  C:\xampp\htdocs\PetPalace
+  ```
+
+### 5️⃣ Access in Browser
+- Visit:
+  ```
+  http://localhost/PetPalace/index.php
   ```
 
 ---
 
-## 🧪 Running Selenium Test Cases
+## 🧪 Run Selenium Login Test
 
-### 1️⃣ Folder Structure
-Your test scripts should be placed in:
-
+### Folder Structure
 ```
 PetPalace/
 ├── Selenium_Tests/
 │   └── test_login.py
 ```
 
-### 2️⃣ Edit Script if Needed
-Ensure the target elements (`name="email"`, etc.) exist on the respective pages. Update locators if changes were made in your HTML.
-
-### 3️⃣ Run the Test
-Open command prompt, navigate to `Selenium_Tests` folder and run:
-
-```bash
-python test_login.py
-```
-
-Test will:
-- Open Chrome
-- Visit the login page
-- Enter credentials and submit
-- Print login result to console
+### Execute Test
+1. Make sure the app is running on `localhost`
+2. Open command prompt:
+   ```bash
+   cd C:\xampp\htdocs\PetPalace\Selenium_Tests
+   python test_login.py
+   ```
+3. The test will:
+   - Open Chrome
+   - Visit login page
+   - Enter credentials
+   - Submit form and print result
 
 ---
 
-## ✅ Completed Modules So Far
+## ✅ Completed Modules
 
-- [x] User Registration
-- [x] User Login
-- [x] Product Display
-- [x] Cart and Checkout
-- [x] Admin Login
-- [x] Admin Product CRUD
-- [x] Password and Email Validation
-- [x] Selenium Login Test (Basic)
-- [ ] Selenium Registration and Cart Tests (WIP)
-- [ ] Payment Gateway Integration (Mocked)
-
----
-
-## 📂 Future Plans
-- Add product categories
-- Order history for users
-- Real-time email alerts
-- OTP verification
-- Search functionality
-- Selenium tests for full workflow
+- [x] User Registration & Login
+- [x] Product Display with Images
+- [x] Cart Add, Quantity Update & Remove
+- [x] Cart Stock Reduction Logic
+- [x] Stripe Payment Gateway Integration
+- [x] Admin Panel (CRUD)
+- [x] Email & Password Validation
+- [x] Stripe Checkout Success Redirect
+- [x] .env Secure Key Management
+- [x] Selenium Login Test Script
 
 ---
 
 ## 🧑‍💻 Developer
+
 **VISHAL**  
 Information Technology, PSG College of Technology
 
 ---
 
 ## 📜 License
-This project is for educational purposes and personal portfolio use only.
+
+This project is for educational and personal portfolio use only.

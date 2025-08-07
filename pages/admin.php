@@ -14,21 +14,34 @@ if (isset($_GET['delete'])) {
 <html>
 <head>
     <title>Admin Panel</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 30px;">
+<body class="bg-light">
     <?php include("../includes/header.php"); ?>
-    <h2 style="color: #333;">Admin Panel</h2>
-    <a href='add_product.php' style="display: inline-block; padding: 10px 15px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">➕ Add New Product</a>
-    <br><br>
     
-    <?php
-    $stmt = $pdo->query("SELECT * FROM products");
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<div style='background-color: white; border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 10px; width: fit-content;'>";
-        echo "<strong style='color: #333;'>{$row['name']}</strong> - ₹{$row['price']} - Stock: {$row['stock']}";
-        echo " <a href='edit_product.php?id={$row['id']}' style='margin-left: 10px; text-decoration: none;'>✏️</a> <a href='?delete={$row['id']}' style='margin-left: 5px; text-decoration: none;'>❌</a>";
-        echo "</div>";
-    }
-    ?>
+    <div class="container my-4">
+        <h2 class="text-primary mb-4">Admin Panel</h2>
+
+        <a href='add_product.php' class="btn btn-success mb-4">➕ Add New Product</a>
+
+        <?php
+        $stmt = $pdo->query("SELECT * FROM products");
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+            <div class="card mb-3" style="max-width: 500px;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title mb-1"><?= htmlspecialchars($row['name']) ?></h5>
+                        <p class="card-text mb-0">₹<?= $row['price'] ?> - Stock: <?= $row['stock'] ?></p>
+                    </div>
+                    <div>
+                        <a href='edit_product.php?id=<?= $row['id'] ?>' class="btn btn-sm btn-outline-primary me-2">✏️</a>
+                        <a href='?delete=<?= $row['id'] ?>' class="btn btn-sm btn-outline-danger">❌</a>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 </body>
 </html>

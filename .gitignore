@@ -1,0 +1,45 @@
+# Ignore environment config
+.env
+.env.*
+
+# Ignore Stripe PHP SDK if added manually
+stripe-php-17.5.0/
+
+# Ignore vendor if you ever use Composer
+/vendor/
+
+# Ignore IDE-specific files
+*.sublime-project
+*.sublime-workspace
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore cache/temp files
+*.cache
+*.tmp
+*.swp
+
+# Ignore PHP session files if stored locally
+sess_*
+
+# Ignore backups
+*.bak
+*.old
+
+# Ignore database dump files (optional)
+*.sql
+*.sql.gz
+*.sqlite
+
+# Ignore node modules if ever used
+node_modules/
+
+# Ignore test reports
+coverage/

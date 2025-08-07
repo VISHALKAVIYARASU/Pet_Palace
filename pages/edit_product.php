@@ -17,32 +17,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f0f2f5; margin: 0;">
+<body class="bg-light">
 
-    <!-- Common Header -->
     <?php include("../includes/header.php"); ?>
 
-    <!-- Centered Form -->
-    <div style="display: flex; justify-content: center; align-items: center; height: calc(100vh - 100px);"> <!-- Adjust height if needed -->
-        <form method="POST" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px;">
-            
-            <h2 style="text-align: center; margin-bottom: 20px;">Edit Product</h2>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+        <form method="POST" class="bg-white p-4 rounded shadow" style="width: 100%; max-width: 400px;">
+            <h3 class="text-center mb-4">Edit Product</h3>
 
-            <label style="display: block; margin-bottom: 8px;">Name</label>
-            <input name="name" value="<?= htmlspecialchars($p['name']) ?>" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input name="name" value="<?= htmlspecialchars($p['name']) ?>" required class="form-control">
+            </div>
 
-            <label style="display: block; margin-bottom: 8px;">Price</label>
-            <input name="price" type="number" value="<?= htmlspecialchars($p['price']) ?>" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+            <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input name="price" type="number" value="<?= htmlspecialchars($p['price']) ?>" required class="form-control">
+            </div>
 
-            <label style="display: block; margin-bottom: 8px;">Stock</label>
-            <input name="stock" type="number" value="<?= htmlspecialchars($p['stock']) ?>" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+            <div class="mb-3">
+                <label class="form-label">Stock</label>
+                <input name="stock" type="number" value="<?= htmlspecialchars($p['stock']) ?>" required class="form-control">
+            </div>
 
-            <label style="display: block; margin-bottom: 8px;">Image URL</label>
-            <input name="image" value="<?= htmlspecialchars($p['image']) ?>" required style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+            <div class="mb-4">
+                <label class="form-label">Image URL</label>
+                <input name="image" value="<?= htmlspecialchars($p['image']) ?>" required class="form-control">
+            </div>
 
-            <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Update</button>
+            <button type="submit" class="btn btn-success w-100">Update</button>
         </form>
     </div>
 
