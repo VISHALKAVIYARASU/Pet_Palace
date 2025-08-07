@@ -1,6 +1,6 @@
 # 🐾 Pet Palace – E-commerce Website for Pet Products
 
-Pet Palace is a PHP-based e-commerce application for selling pet-related products. It features user-friendly shopping, dynamic cart management, admin product controls, Stripe integration for payments, and Selenium-based login automation testing.
+Pet Palace is a PHP-based e-commerce application for selling pet-related products. It features user-friendly shopping, dynamic cart management, admin product controls, Stripe integration for payments, and Selenium-based automation testing.
 
 ---
 
@@ -29,7 +29,7 @@ Pet Palace is a PHP-based e-commerce application for selling pet-related product
 - Secure API key via `.env` configuration
 
 ### 🧪 Automation Testing
-- Selenium login test script (`test_login.py`)
+- Selenium based testing of many features and login in a separate file
 
 ---
 
@@ -93,13 +93,14 @@ Pet Palace is a PHP-based e-commerce application for selling pet-related product
 
 ---
 
-## 🧪 Run Selenium Login Test
+## 🧪 Run Selenium Tests
 
 ### Folder Structure
 ```
 PetPalace/
 ├── Selenium_Tests/
 │   └── test_login.py
+    └── ex5_3.py
 ```
 
 ### Execute Test
@@ -128,7 +129,7 @@ PetPalace/
 - [x] Email & Password Validation
 - [x] Stripe Checkout Success Redirect
 - [x] .env Secure Key Management
-- [x] Selenium Login Test Script
+- [x] Selenium Test Script
 
 ---
 
