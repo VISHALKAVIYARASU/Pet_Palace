@@ -8,7 +8,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-<!-- Bootstrap 5 CSS (if not already included) -->
+<!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
@@ -34,7 +34,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <nav class="navbar navbar-expand-md navbar-custom">
     <div class="container-fluid">
         <!-- Brand center -->
-        <a class="navbar-brand mx-auto" style="font-size: 30px;" href="#">PetPalace</a>
+        <a class="navbar-brand mx-auto d-flex align-items-center" href="#">
+            <img src="../assets/logo.png" alt="Pet Palace Logo" style="height: 40px; margin-right: 10px;">
+            <span>PetPalace</span>
+        </a>
 
         <!-- Hamburger toggle -->
         <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -61,9 +64,25 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <!-- Search bar only on home.php -->
             <?php if ($current_page == 'home.php'): ?>
                 <form class="d-flex" action="home.php" method="GET">
-                    <input class="form-control form-control-sm me-2" type="search" name="search" placeholder="Search products..." aria-label="Search">
+                    <input class="form-control form-control-sm me-2" 
+                           type="search" 
+                           name="search" 
+                           placeholder="Search products..." 
+                           aria-label="Search"
+                           list="productSuggestions">
                     <button class="btn btn-sm btn-outline-light" type="submit">Search</button>
                 </form>
+
+                <!-- Autocomplete list -->
+                <datalist id="productSuggestions">
+                    <option value="Dog Food">
+                    <option value="Cat Food">
+                    <option value="Pet Shampoo">
+                    <option value="Dog Toys">
+                    <option value="Cat Litter">
+                    <option value="Bird Cage">
+                    <option value="Fish Tank">
+                </datalist>
             <?php endif; ?>
         </div>
     </div>

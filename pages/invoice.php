@@ -6,6 +6,8 @@ $result = $pdo->prepare("SELECT * FROM transactions ORDER BY created_at DESC");
 $result->execute();
 $transactions = $result->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<?php include("../includes/header.php"); ?>
+
 
 <!DOCTYPE html>
 <html>

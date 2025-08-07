@@ -6,3 +6,4 @@ session_start();
 header("Location: pages/home.php");
 exit;
 ?>
+<img src="assets/logo.png" alt="Pet Palace Logo" id="site-logo">
