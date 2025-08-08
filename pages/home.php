@@ -4,6 +4,28 @@ include("../db/config.php");
 
 // Set default user if not logged in
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+
+// Check if cart has items for logged in user (assuming cart stored in session as $_SESSION['cart'])
+$hasCartItems = false;
+if ($user) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_cart WHERE user_id = ? AND quantity > 0");
+    $stmt->execute([$user['id']]);
+    $count = $stmt->fetchColumn();
+
+    if ($count > 0) {
+        $hasCartItems = true;
+    }
+}
+
+
+// Only show popup once per login session for role 'user'
+$showCartPopup = false;
+if ($user && $user['role'] === 'user' && $hasCartItems) {
+    if (!isset($_SESSION['cart_popup_shown'])) {
+        $showCartPopup = true;
+        $_SESSION['cart_popup_shown'] = true; // Mark as shown
+    }
+}
 ?>
 <?php include("../includes/header.php"); ?>
 
@@ -15,12 +37,23 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-light" style="font-family: Arial, sans-serif; padding: 20px;">
 
     <div class="container">
         <h2 class="text-center text-primary mb-4">
             <?= $user ? "Welcome, " . htmlspecialchars($user['username']) : "Welcome to Pet Palace!" ?>
         </h2>
+        <?php if ($showCartPopup): ?>
+
+        <script>
+            window.onload = function() {
+                if (confirm("You have items in your cart. Do you want to proceed to checkout?")) {
+                    window.location.href = "cart.php";
+                }
+            };
+        </script>
+        <?php endif; ?>
 
         <div class="row justify-content-center">
             <?php
@@ -72,3 +105,4 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
 </body>
 </html>
+

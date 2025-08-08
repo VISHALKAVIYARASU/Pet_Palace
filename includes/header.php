@@ -49,8 +49,17 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <!-- Left side nav links -->
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin'): ?>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin1'): ?>
                     <li class="nav-item"><a class="nav-link" href="admin.php">Admin Panel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="invoice.php">Invoice Report</a></li>
+                <?php endif; ?>
+                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin2'): ?>
+                    <li class="nav-item"><a class="nav-link" href="invoice.php">Invoice Report</a></li>
+                <?php endif; ?>
+                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin3'): ?>
+                    <li class="nav-item"><a class="nav-link" href="admin.php">Admin Panel</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 'user'): ?>
                     <li class="nav-item"><a class="nav-link" href="invoice.php">Invoice Report</a></li>
                 <?php endif; ?>
                 <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>

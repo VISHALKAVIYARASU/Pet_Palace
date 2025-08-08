@@ -2,13 +2,32 @@
 session_start();
 include("../db/config.php");
 
-$result = $pdo->prepare("SELECT * FROM transactions ORDER BY created_at DESC");
-$result->execute();
-$transactions = $result->fetchAll(PDO::FETCH_ASSOC);
+// Assuming user info is stored in session like this:
+$user = $_SESSION['user'] ?? null;
+
+if (!$user) {
+    // Not logged in - redirect to login or show error
+    header("Location: ../auth/login.php");
+    exit;
+}
+
+$userRole = strtolower($user['role']); // e.g. 'admin1', 'user', etc.
+$userId = $user['id'] ?? null;          // Assuming user id is stored as 'id' in session
+
+// If user is admin (role contains 'admin'), show all transactions; else filter by user_id
+if (strpos($userRole, 'admin') === 0) {
+    // Admin roles: admin, admin1, admin2, admin3
+    $stmt = $pdo->prepare("SELECT * FROM transactions ORDER BY created_at DESC");
+    $stmt->execute();
+} else {
+    // Normal user: only their transactions
+    $stmt = $pdo->prepare("SELECT * FROM transactions WHERE user_id = ? ORDER BY created_at DESC");
+    $stmt->execute([$userId]);
+}
+
+$transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include("../includes/header.php"); ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,7 +123,7 @@ $transactions = $result->fetchAll(PDO::FETCH_ASSOC);
         <tbody>
             <?php foreach ($transactions as $txn): ?>
             <tr>
-                <td><?= $txn['id'] ?></td>
+                <td><?= htmlspecialchars($txn['id']) ?></td>
                 <td><?= htmlspecialchars($txn['user_id']) ?></td>
                 <td>₹<?= number_format($txn['amount'], 2) ?></td>
                 <td><?= htmlspecialchars($txn['payment_status']) ?></td>
@@ -112,6 +131,9 @@ $transactions = $result->fetchAll(PDO::FETCH_ASSOC);
                 <td><?= htmlspecialchars($txn['created_at']) ?></td>
             </tr>
             <?php endforeach; ?>
+            <?php if (empty($transactions)): ?>
+            <tr><td colspan="6" style="text-align:center; color:#666;">No transactions found.</td></tr>
+            <?php endif; ?>
         </tbody>
     </table>
 
